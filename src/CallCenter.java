@@ -23,21 +23,11 @@ public class CallCenter {
         }
     }
 
-    public void specialist() {
-
-        try {
-            Thread.sleep(SLEEP_ATC);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
+    public void specialist() throws InterruptedException {
+        Thread.sleep(SLEEP_ATC);
         while (!queue.isEmpty()) {
             System.out.println("Оператор - " + Thread.currentThread().getName() + " принял " + queue.poll());
-            try {
-                Thread.sleep(SLEEP_TAKE);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            Thread.sleep(SLEEP_TAKE);
         }
     }
 }
