@@ -6,10 +6,11 @@ public class CallCenter {
     final int CALL_SIZE = 10;
     final int SLEEP_ATC = 1000;
     final int SLEEP_TAKE = 4000;
+    final int CALL_MAX = 30;
 
 
     public void callGeneric() {
-        while (true) {
+        while (count < CALL_MAX) {
             for (int i = 0; i < CALL_SIZE; i++) {
                 count++;
                 queue.add("звонок номер: " + count + ".");
@@ -23,10 +24,14 @@ public class CallCenter {
     }
 
     public void specialist() {
-        while (true) {
-            if (queue.isEmpty()) {
-                continue;
-            }
+
+        try {
+            Thread.sleep(SLEEP_ATC);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        while (!queue.isEmpty()) {
             System.out.println("Оператор - " + Thread.currentThread().getName() + " принял " + queue.poll());
             try {
                 Thread.sleep(SLEEP_TAKE);

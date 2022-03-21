@@ -11,6 +11,5 @@ public class Main {
         service.execute(new Thread(callCenter::specialist));
         service.execute(new Thread(callCenter::specialist));
         service.shutdown();
-        service.awaitTermination(2, TimeUnit.MINUTES);
     }
 }
