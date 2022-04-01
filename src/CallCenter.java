@@ -25,9 +25,14 @@ public class CallCenter {
 
     public void specialist() throws InterruptedException {
         Thread.sleep(SLEEP_ATC);
-        while (!queue.isEmpty()) {
-            System.out.println("Оператор - " + Thread.currentThread().getName() + " принял " + queue.poll());
+        while (true) {
+            String calling = queue.poll();
+            if (calling == null){
+                break;
+            }
+            System.out.println("Оператор - " + Thread.currentThread().getName() + " принял " + calling);
             Thread.sleep(SLEEP_TAKE);
+
         }
     }
 }
